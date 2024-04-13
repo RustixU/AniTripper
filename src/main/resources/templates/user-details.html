@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace = "~{fragments/head}"></head>
+<body class="d-flex flex-column h-100">
+<div th:replace = "~{fragments/navbar}">Navbar</div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <main class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>User Details</h1>
+                </div>
+                <div class="row bg-light rounded">
+                    <div class="col-md-6">
+                        <h2>User</h2>
+                        <h4 th:text="'First Name: ' + ${userDetails.firstName}"></h4>
+                        <h4 th:text="'Last Name: ' + ${userDetails.lastName}"></h4>
+                        <h4 th:text="'Education Level: ' + ${userDetails.educationLevel}"></h4>
+                        <h4 th:text="'Birth Date: ' + ${userDetails.birthDate}"></h4>
+                        <h4 th:text="'Anime: ' + ${userDetails.animeName}"></h4>
+                        <div class="align-bottom">
+                            <a class="btn btn-danger align-bottom"
+                               th:href="@{/users/user-delete{user-full-name}(user-full-name=${userDetails.firstName} + ' ' + ${userDetails.lastName})}">Delete
+                                user</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6"><img src="/pic/user.png" height="350px"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+</main>
+<footer th:replace = "~{fragments/footer}"></footer>
+</body>
+</html>

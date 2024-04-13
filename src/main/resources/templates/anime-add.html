@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head}"></head>
+<body class="d-flex flex-column h-100">
+<div th:replace="~{fragments/navbar}">Navbar</div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>Add Anime</h1>
+                </div>
+                <form th:action="@{/animes/add}"
+                      th:method="post"
+                      th:object="${animeModel}"
+                      class="m-md-auto w-50 pb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Name</label>
+                        <input th:field="*{name}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center"
+                               id="name" aria-describedby="nameHelp" name="name">
+                        <small th:if="${#fields.hasErrors('name')}"
+                               th:errors="*{name}"
+                               class="text-danger">Error message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="studio">Studio</label>
+                        <input th:field="*{studio}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-lg-center"
+                               id="studio" aria-describedby="studio" name="studio">
+                        <small th:if="${#fields.hasErrors('studio')}"
+                               th:errors="*{studio}"
+                               class="text-danger">Error message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Description</label>
+                        <input th:field="*{description}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-lg-center"
+                               id="description" aria-describedby="description" name="description">
+                        <small th:if="${#fields.hasErrors('description')}"
+                               th:errors="*{description}"
+                               class="text-danger">Error message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="time">Time of the series</label>
+                        <input th:field="*{time}"
+                               th:errorclass="is-invalid"
+                               type="text" min="0" class="form-control text-center"
+                               id="time" aria-describedby="time" name="time">
+                        <small th:if="${#fields.hasErrors('description')}"
+                               th:errors="*{time}"
+                               class="text-danger">Error message</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary">Add Anime</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>
